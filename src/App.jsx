@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { asyncDaegu } from "./store/daeguSlice";
 
 import { useState } from "react";
+import Map from "./components/Map";
 function App() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state);
@@ -33,6 +34,7 @@ function App() {
         <input type="submit" />
       </form>
 
+      <Map />
     </div>
   );
 }
