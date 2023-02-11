@@ -43,7 +43,7 @@ const daeguKey = import.meta.env.VITE_DAEGU_KEY;
 
 const asyncDaegu = createAsyncThunk("asyncDaegu", async (value) => {
   const res = await axios(
-    `https://apis.data.go.kr/6270000/dgMealCardShop/getGugunList?serviceKey=${daeguKey}&type=json&numOfRows=1&pageNo=20&gugunName=${value}`
+    `https://apis.data.go.kr/6270000/dgMealCardShop/getGugunList?serviceKey=${daeguKey}&type=json&numOfRows=20&pageNo=1&gugunName=${value}`
   );
   console.log(res);
   const data = res.data.body.items.item;
