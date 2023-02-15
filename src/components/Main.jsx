@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import { asyncDaegu } from "../store/daeguSlice";
 import { MapSlice } from "../store/MapSlice";
 
@@ -48,8 +49,8 @@ const Main = () => {
     );
   };
   return (
-    <div>
-      <select name="area" id="area-select" onChange={handleChange}>
+    <Container>
+      <StyledSelect name="area" id="area-select" onChange={handleChange}>
         <option value="">행정구역을 선택해주세요</option>
         <option value="북구" id="BukGu">
           북구
@@ -75,10 +76,28 @@ const Main = () => {
         <option value="달성군" id="DalSungGun">
           달성군
         </option>
-      </select>
-      <button onClick={handleDataFetch}>찾아보기</button>
-    </div>
+      </StyledSelect>
+      <StyledButton onClick={handleDataFetch}>찾아보기</StyledButton>
+    </Container>
   );
 };
+
+const StyledSelect = styled.select`
+  width: 70%;
+  height: 100%;
+  font-size: 18px;
+  margin-right: 4px;
+`;
+
+const StyledButton = styled.button`
+  width: 24%;
+  height: 100%;
+  font-size: 12px;
+`;
+
+const Container = styled.div`
+  margin: 8px;
+  height: 4vh;
+`;
 
 export default Main;

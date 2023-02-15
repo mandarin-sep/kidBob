@@ -11,14 +11,21 @@ const List = () => {
   }
 
   return (
-    <ul>
+    <StyledUl>
       {value.map((item) => {
         return <ListItem item={item} />;
       })}
-    </ul>
+    </StyledUl>
   );
 };
 
-const StlyedUl = styled.ul``;
+const StyledUl = styled.ul`
+  overflow-y: scroll;
+  height: 90vh;
+  white-space: nowrap;
+  list-style: none;
+  padding: 0;
+  position: relative;
+`;
 
 export default List;
