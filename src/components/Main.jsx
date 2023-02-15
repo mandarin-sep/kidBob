@@ -37,6 +37,7 @@ const Main = () => {
     setValue(e.target.value);
     setIndex(e.target.selectedIndex);
   };
+
   const handleDataFetch = () => {
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(DaeGu[index]));
