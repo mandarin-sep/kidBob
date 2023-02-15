@@ -1,27 +1,62 @@
-import React, { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { NaverMap, useNavermaps, Marker } from "react-naver-maps";
 
 const Map = () => {
-  const mapElement = useRef(null);
+  const [location, setLocation] = useState({});
+  const state = useSelector((state) => state.loca.location);
+  const marker = useSelector((state) => state.daegu.value);
 
+  //마커를 렌더링 시키기 위해서 location(좌표가 들어있는 객체)가 변하면 re-render
   useEffect(() => {
-    const { naver } = window;
-    if (!mapElement.current || !naver) return;
-    const location = new naver.maps.LatLng(37.3595704, 127.105399);
-    const mapOptions = {
-      center: location,
-      zoom: 17,
-      zoomControl: true,
-    };
+    setLocation(marker);
+  }, [location]);
 
-    const map = new naver.maps.Map(mapElement.current, mapOptions);
+  //지도의 중심을 바꿈
+  useEffect(() => {
+    if (map) {
+      map.setCenter(state);
+      map.setZoom(15, true);
+    }
+  }, [state]);
 
-    new naver.maps.Marker({
-      position: location,
-      map,
-    });
-  }, []);
+  const [map, setMap] = useState(null);
+
+  //마커를 나타낼 좌표계를 가져오는 함수
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (map) {
+      map.setCenter(state);
+    }
+    setLocation(marker);
+  };
+
+  const navermaps = useNavermaps();
+  if (JSON.stringify(location) === "{}") {
+    return (
+      <NaverMap defaultCenter={state} defaultZoom={15} ref={setMap}>
+        <button onClick={handleClick} style={{ position: "absolute" }}>
+          클릭!
+        </button>
+      </NaverMap>
+    );
+  }
+
   return (
-    <div ref={mapElement} style={{ minHeight: "400px", minWidth: "400px" }} />
+    <NaverMap defaultCenter={state} defaultZoom={13} ref={setMap}>
+      {location.map((stat) => {
+        return (
+          <Marker
+            position={new navermaps.LatLng(stat.shopLat, stat.shopLon)}
+            key={location.shopId}
+          />
+        );
+      })}
+      ;
+      <button onClick={handleClick} style={{ position: "absolute" }}>
+        클릭!
+      </button>
+    </NaverMap>
   );
 };
 
