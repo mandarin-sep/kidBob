@@ -1,15 +1,27 @@
 import { MapSlice } from "../store/MapSlice";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+
 const ListItem = ({ item }) => {
   const { naver } = window;
   const dispatch = useDispatch();
-  const [infoWindow, setInfoWindow] = useState(null);
   const { shopName, shopRoadAddr, shopTel, shopAddr, shopLat, shopLon } = item;
   const newCenter = new naver.maps.LatLng(shopLat, shopLon);
 
   const handleClick = () => {
     dispatch(MapSlice.actions.setLocation(newCenter));
+    dispatch(
+      MapSlice.actions.setInfo({
+        isOpen: true,
+        infomation: {
+          shopName,
+          shopRoadAddr,
+          shopTel,
+          shopAddr,
+          shopLat,
+          shopLon,
+        },
+      })
+    );
   };
 
   return (

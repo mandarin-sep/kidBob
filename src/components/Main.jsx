@@ -41,6 +41,11 @@ const Main = () => {
   const handleDataFetch = () => {
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(DaeGu[index]));
+    dispatch(
+      MapSlice.actions.setInfo({
+        isOpen: false,
+      })
+    );
   };
   return (
     <div>
