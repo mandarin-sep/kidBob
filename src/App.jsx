@@ -21,7 +21,7 @@ const AppContainer = styled.div`
 `;
 
 const MapContainer = styled.div`
-  height: 100vh;
+  height: 95vh;
   width: 80vw;
 `;
 
