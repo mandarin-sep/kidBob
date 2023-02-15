@@ -11,10 +11,10 @@ const Map = () => {
   const info = useSelector((state) => state.loca.value);
   const isOpen = useSelector((state) => state.loca.boolean);
 
-  //마커를 렌더링 시키기 위해서 location(좌표가 들어있는 객체)가 변하면 re-render
+  //마커를 렌더링 시키기 위해서 marker(좌표가 들어있는 객체)가 변하면 re-render
   useEffect(() => {
     setLocation(marker);
-  }, [location]);
+  }, [marker]);
 
   //지도의 중심을 바꿈
   useEffect(() => {
@@ -27,15 +27,6 @@ const Map = () => {
   useEffect(() => {}, [isOpen]);
 
   const [map, setMap] = useState(null);
-
-  //마커를 나타낼 좌표계를 가져오는 함수
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (map) {
-      map.setCenter(state);
-    }
-    setLocation(marker);
-  };
 
   const [infoWindow, setInfoWindow] = useState(null);
 
@@ -65,11 +56,7 @@ const Map = () => {
   const navermaps = useNavermaps();
   if (JSON.stringify(location) === "{}") {
     return (
-      <NaverMap defaultCenter={state} defaultZoom={15} ref={setMap}>
-        <button onClick={handleClick} style={{ position: "absolute" }}>
-          클릭!
-        </button>
-      </NaverMap>
+      <NaverMap defaultCenter={state} defaultZoom={15} ref={setMap}></NaverMap>
     );
   }
 
@@ -84,9 +71,6 @@ const Map = () => {
         );
       })}
       ;
-      <button onClick={handleClick} style={{ position: "absolute" }}>
-        클릭!
-      </button>
       <InfoWindow ref={setInfoWindow} />
     </NaverMap>
   );
