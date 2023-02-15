@@ -43,10 +43,10 @@ const daeguKey = import.meta.env.VITE_DAEGU_KEY;
 
 const asyncDaegu = createAsyncThunk("asyncDaegu", async (value) => {
   const res = await axios(
-    `https://apis.data.go.kr/6270000/dgMealCardShop/getGugunList?serviceKey=${daeguKey}&type=json&numOfRows=20&pageNo=1&gugunName=${value}`
+    `https://apis.data.go.kr/6270000/dgMealCardShop/getGugunList?serviceKey=${daeguKey}&type=json&numOfRows=1000&pageNo=1&gugunName=${value}`
   );
   console.log(res);
-  const data = res.data.body.items.item;
+  const data = res.data.body;
   return data;
 });
 
@@ -54,6 +54,7 @@ const DaeguSlice = createSlice({
   name: "DaeguSlice",
   initialState: {
     value: {},
+    totalCount: 0,
     status: "Welcome",
   },
   extraReducers: (builder) => {
@@ -62,7 +63,8 @@ const DaeguSlice = createSlice({
     });
     builder.addCase(asyncDaegu.fulfilled, (state, action) => {
       state.status = "Succecs";
-      state.value = action.payload;
+      state.value = action.payload.items.item;
+      state.totalCount = action.payload.totalCount;
     });
 
     builder.addCase(asyncDaegu.rejected, (state, action) => {

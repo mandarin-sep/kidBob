@@ -1,22 +1,28 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Main from "./components/Main";
 import Map from "./components/Map";
+import { Container as MapDiv } from "react-naver-maps";
+import styled from "styled-components";
+import SearchPage from "./components/SearchPage";
 function App() {
-  const [count, setCount] = useState(0);
-  const { naver } = window;
-  const state = useSelector((state) => state.loca.location);
-
-  const [location, setLocation] = useState({});
-
   return (
-    <div className="App">
+    <AppContainer>
       <br />
-      <button onClick={() => setLocation(busan)}>+</button>
-      <Main />
-      <Map location={state} />
-    </div>
+      <SearchPage />
+      <MapContainer>
+        <MapDiv style={{ width: "100%", height: "100%" }}>
+          <Map />
+        </MapDiv>
+      </MapContainer>
+    </AppContainer>
   );
 }
+
+const AppContainer = styled.div`
+  display: flex;
+`;
+
+const MapContainer = styled.div`
+  height: 100vh;
+  width: 80vw;
+`;
 
 export default App;
