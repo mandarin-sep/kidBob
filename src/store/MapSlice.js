@@ -15,7 +15,7 @@ export const MapSlice = createSlice({
     },
     setInfo: (state, action) => {
       state.boolean = action.payload.isOpen;
-      state.value = action.payload.infomation;
+      state.value = action.payload.information;
     },
   },
 });

@@ -13,13 +13,11 @@ const ListItem = ({ item }) => {
     dispatch(
       MapSlice.actions.setInfo({
         isOpen: true,
-        infomation: {
+        information: {
           shopName,
           shopRoadAddr,
           shopTel,
           shopAddr,
-          shopLat,
-          shopLon,
         },
       })
     );
