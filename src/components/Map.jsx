@@ -11,10 +11,10 @@ const Map = () => {
   const info = useSelector((state) => state.loca.value);
   const isOpen = useSelector((state) => state.loca.boolean);
 
-  //마커를 렌더링 시키기 위해서 location(좌표가 들어있는 객체)가 변하면 re-render
+  //마커를 렌더링 시키기 위해서 marker(좌표가 들어있는 객체)가 변하면 re-render
   useEffect(() => {
     setLocation(marker);
-  }, [location]);
+  }, [marker]);
 
   //지도의 중심을 바꿈
   useEffect(() => {
@@ -24,25 +24,15 @@ const Map = () => {
     }
   }, [state]);
 
-  useEffect(() => {}, [isOpen]);
-
   const [map, setMap] = useState(null);
-
-  //마커를 나타낼 좌표계를 가져오는 함수
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (map) {
-      map.setCenter(state);
-    }
-    setLocation(marker);
-  };
 
   const [infoWindow, setInfoWindow] = useState(null);
 
+  //infoWindow 설정
   if (infoWindow && isOpen) {
     infoWindow.setContent(
-      `<div style="padding:20px; ">
-        <h4>` +
+      `<div style="padding:15px; font-size:16px;">
+        <h4 style="margin-top:0px; margin-bottom:10px;">` +
         info.shopName +
         `</h4>
         <span>가게주소:` +
@@ -62,31 +52,43 @@ const Map = () => {
       infoWindow.open(map, infoState);
     }
   }
-  const navermaps = useNavermaps();
-  if (JSON.stringify(location) === "{}") {
-    return (
-      <NaverMap defaultCenter={state} defaultZoom={15} ref={setMap}>
-        <button onClick={handleClick} style={{ position: "absolute" }}>
-          클릭!
-        </button>
-      </NaverMap>
+
+  const markerClick = () => {
+    dispatch(
+      MapSlice.actions.setInfo({
+        isOpen: !isOpen,
+        infomation: info,
+      })
     );
+
+    infoWindow.close();
+  };
+
+  //네이버 지도 api 호출
+  const navermaps = useNavermaps();
+
+  if (JSON.stringify(location) === "{}") {
+    return <NaverMap center={state} defaultZoom={15} ref={setMap}></NaverMap>;
   }
 
   return (
-    <NaverMap defaultCenter={state} defaultZoom={13} ref={setMap}>
+    <NaverMap
+      defaultCenter={state}
+      defaultZoom={13}
+      ref={setMap}
+      scrollWheel={false}
+    >
       {location.map((stat) => {
         return (
           <Marker
             position={new navermaps.LatLng(stat.shopLat, stat.shopLon)}
-            key={location.shopId}
+            title={stat.shopName}
+            clickable={true}
+            onClick={markerClick}
           />
         );
       })}
       ;
-      <button onClick={handleClick} style={{ position: "absolute" }}>
-        클릭!
-      </button>
       <InfoWindow ref={setInfoWindow} />
     </NaverMap>
   );
