@@ -24,16 +24,15 @@ const Map = () => {
     }
   }, [state]);
 
-  useEffect(() => {}, [isOpen]);
-
   const [map, setMap] = useState(null);
 
   const [infoWindow, setInfoWindow] = useState(null);
 
+  //infoWindow 설정
   if (infoWindow && isOpen) {
     infoWindow.setContent(
-      `<div style="padding:20px; ">
-        <h4>` +
+      `<div style="padding:15px; font-size:16px;">
+        <h4 style="margin-top:0px; margin-bottom:10px;">` +
         info.shopName +
         `</h4>
         <span>가게주소:` +
@@ -53,20 +52,39 @@ const Map = () => {
       infoWindow.open(map, infoState);
     }
   }
-  const navermaps = useNavermaps();
-  if (JSON.stringify(location) === "{}") {
-    return (
-      <NaverMap defaultCenter={state} defaultZoom={15} ref={setMap}></NaverMap>
+
+  const markerClick = () => {
+    dispatch(
+      MapSlice.actions.setInfo({
+        isOpen: !isOpen,
+        infomation: info,
+      })
     );
+
+    infoWindow.close();
+  };
+
+  //네이버 지도 api 호출
+  const navermaps = useNavermaps();
+
+  if (JSON.stringify(location) === "{}") {
+    return <NaverMap center={state} defaultZoom={15} ref={setMap}></NaverMap>;
   }
 
   return (
-    <NaverMap defaultCenter={state} defaultZoom={13} ref={setMap}>
+    <NaverMap
+      defaultCenter={state}
+      defaultZoom={13}
+      ref={setMap}
+      scrollWheel={false}
+    >
       {location.map((stat) => {
         return (
           <Marker
             position={new navermaps.LatLng(stat.shopLat, stat.shopLon)}
-            key={location.shopId}
+            title={stat.shopName}
+            clickable={true}
+            onClick={markerClick}
           />
         );
       })}

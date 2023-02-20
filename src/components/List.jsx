@@ -13,7 +13,7 @@ const List = () => {
   return (
     <StyledUl>
       {value.map((item) => {
-        return <ListItem item={item} />;
+        return <ListItem item={item} key={item.shopId} />;
       })}
     </StyledUl>
   );
