@@ -4,14 +4,18 @@ import { NaverMap, useNavermaps, Marker, InfoWindow } from "react-naver-maps";
 import { MapSlice } from "../store/MapSlice";
 
 const Map = () => {
+  //네이버 지도 api 호출
+  const navermaps = useNavermaps();
+
   const [location, setLocation] = useState({});
   const dispatch = useDispatch();
   const state = useSelector((state) => state.loca.location);
   const marker = useSelector((state) => state.daegu.value);
   const info = useSelector((state) => state.loca.value);
   const isOpen = useSelector((state) => state.loca.boolean);
+  const type = useSelector((state) => state.loca.type);
 
-  //마커를 렌더링 시키기 위해서 marker(좌표가 들어있는 객체)가 변하면 re-render
+  //마커를 렌더링해줄 정보를 location 변수에 담아줌
   useEffect(() => {
     setLocation(marker);
   }, [marker]);
@@ -22,10 +26,20 @@ const Map = () => {
       map.setCenter(state);
       map.setZoom(18, true);
     }
+    if (infoWindow) {
+      infoWindow.close();
+    }
   }, [state]);
 
-  const [map, setMap] = useState(null);
+  useEffect(() => {
+    if (type !== "") {
+      setLocation(marker.filter((shop) => shop.shopBsType === type));
+    }
+    console.log(location);
+  }, [type]);
 
+  //naverMap의 map과 infowindow에 useRef말고 useState로 접근
+  const [map, setMap] = useState(null);
   const [infoWindow, setInfoWindow] = useState(null);
 
   //infoWindow 설정
@@ -55,17 +69,13 @@ const Map = () => {
 
   const markerClick = () => {
     dispatch(
-      MapSlice.actions.setInfo({
+      MapSlice.actions.isOpen({
         isOpen: !isOpen,
-        infomation: info,
       })
     );
 
     infoWindow.close();
   };
-
-  //네이버 지도 api 호출
-  const navermaps = useNavermaps();
 
   if (JSON.stringify(location) === "{}") {
     return <NaverMap center={state} defaultZoom={15} ref={setMap}></NaverMap>;
@@ -76,7 +86,7 @@ const Map = () => {
       defaultCenter={state}
       defaultZoom={13}
       ref={setMap}
-      scrollWheel={false}
+      scrollWheel={true}
     >
       {location.map((stat) => {
         return (
@@ -95,3 +105,5 @@ const Map = () => {
 };
 
 export default Map;
+
+//치킨, 한식, 중식 ,분식, 피자, 패스트푸드, 돈까스, 도시락/죽 카페,디저트 편의점(23)

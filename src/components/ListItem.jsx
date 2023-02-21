@@ -12,7 +12,6 @@ const ListItem = ({ item }) => {
     dispatch(MapSlice.actions.setLocation(newCenter));
     dispatch(
       MapSlice.actions.setInfo({
-        isOpen: true,
         information: {
           shopName,
           shopRoadAddr,
@@ -21,6 +20,7 @@ const ListItem = ({ item }) => {
         },
       })
     );
+    dispatch(MapSlice.actions.isOpen({ isOpen: true }));
   };
 
   return (

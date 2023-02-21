@@ -7,7 +7,6 @@ const asyncDaegu = createAsyncThunk("asyncDaegu", async (value) => {
   const res = await axios(
     `https://apis.data.go.kr/6270000/dgMealCardShop/getGugunList?serviceKey=${daeguKey}&type=json&numOfRows=1000&pageNo=1&gugunName=${value}`
   );
-  console.log(res);
   const data = res.data.body;
   return data;
 });

@@ -43,10 +43,11 @@ const Main = () => {
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(DaeGu[index]));
     dispatch(
-      MapSlice.actions.setInfo({
+      MapSlice.actions.isOpen({
         isOpen: false,
       })
     );
+    dispatch(MapSlice.actions.setShopType(""));
   };
   return (
     <Container>
