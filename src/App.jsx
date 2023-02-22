@@ -2,6 +2,7 @@ import Map from "./components/Map";
 import { Container as MapDiv } from "react-naver-maps";
 import styled from "styled-components";
 import SearchPage from "./components/SearchPage";
+import FoodTypeButton from "./components/FoodTypeButton";
 function App() {
   return (
     <AppContainer>
@@ -12,6 +13,10 @@ function App() {
           <Map />
         </MapDiv>
       </MapContainer>
+
+      <FoodButtonContainer>
+        <FoodTypeButton />
+      </FoodButtonContainer>
     </AppContainer>
   );
 }
@@ -23,6 +28,12 @@ const AppContainer = styled.div`
 const MapContainer = styled.div`
   height: 95vh;
   width: 80vw;
+`;
+
+const FoodButtonContainer = styled.section`
+  position: absolute;
+  bottom: 0;
+  right: 0;
 `;
 
 export default App;
