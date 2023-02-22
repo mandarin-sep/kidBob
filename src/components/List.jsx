@@ -6,7 +6,7 @@ import ListItem from "./ListItem";
 const List = () => {
   const value = useSelector((state) => state.daegu.value);
 
-  if (JSON.stringify(value) === "{}") {
+  if (value.length === 0) {
     return <div>없음</div>;
   }
 

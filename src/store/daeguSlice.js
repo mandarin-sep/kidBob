@@ -15,7 +15,7 @@ const asyncDaegu = createAsyncThunk("asyncDaegu", async (value) => {
 const DaeguSlice = createSlice({
   name: "DaeguSlice",
   initialState: {
-    value: {},
+    value: [],
     totalCount: 0,
     status: "Welcome",
   },

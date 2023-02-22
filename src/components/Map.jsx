@@ -67,7 +67,7 @@ const Map = () => {
   //네이버 지도 api 호출
   const navermaps = useNavermaps();
 
-  if (JSON.stringify(location) === "{}") {
+  if (location.length === 0) {
     return <NaverMap center={state} defaultZoom={15} ref={setMap}></NaverMap>;
   }
 
