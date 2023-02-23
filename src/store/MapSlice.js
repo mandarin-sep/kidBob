@@ -18,7 +18,7 @@ export const MapSlice = createSlice({
       state.value = action.payload.information;
     },
     isOpen: (state, action) => {
-      state.boolean = action.payload.isOpen;
+      state.boolean = action.payload;
     },
     setShopType: (state, action) => {
       state.type = action.payload;

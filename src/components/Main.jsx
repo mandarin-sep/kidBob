@@ -13,14 +13,14 @@ const Main = () => {
   const state = useSelector((state) => state.loca.location);
 
   //onChange함수에서 적용해줄 좌표값
-  const BukGu = new naver.maps.LatLng(35.85557, 128.5829);
-  const DalSeoGu = new naver.maps.LatLng(35.82987, 128.5327);
-  const DalSungGun = new naver.maps.LatLng(35.7746, 123.4314);
-  const JungGu = new naver.maps.LatLng(35.86934, 128.6062);
-  const DongGu = new naver.maps.LatLng(35.88666, 128.6356);
+  const BukGu = new naver.maps.LatLng(35.905731, 128.563439);
+  const DalSeoGu = new naver.maps.LatLng(35.836634, 128.517682);
+  const DalSungGun = new naver.maps.LatLng(35.723277, 128.538638);
+  const JungGu = new naver.maps.LatLng(35.866423, 128.593182);
+  const DongGu = new naver.maps.LatLng(35.895176, 128.671143);
   const SeoGu = new naver.maps.LatLng(35.87176, 128.5592);
-  const SuSeongGu = new naver.maps.LatLng(35.85817, 128.6306);
-  const NamGu = new naver.maps.LatLng(35.846, 128.5975);
+  const SuSeongGu = new naver.maps.LatLng(35.840878, 128.662889);
+  const NamGu = new naver.maps.LatLng(35.844144, 128.584339);
 
   const DaeGu = [
     "",
@@ -42,11 +42,7 @@ const Main = () => {
   const handleDataFetch = () => {
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(DaeGu[index]));
-    dispatch(
-      MapSlice.actions.isOpen({
-        isOpen: false,
-      })
-    );
+    dispatch(MapSlice.actions.isOpen(false));
     dispatch(MapSlice.actions.setShopType(""));
   };
   return (

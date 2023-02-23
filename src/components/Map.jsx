@@ -7,45 +7,45 @@ const Map = () => {
   //네이버 지도 api 호출
   const navermaps = useNavermaps();
 
-  const [location, setLocation] = useState({});
+  const [location, setLocation] = useState([]);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.loca.location);
-  const marker = useSelector((state) => state.daegu.value);
+  const pickedShopLocation = useSelector((state) => state.loca.location);
+  const shopInfo = useSelector((state) => state.daegu.value);
   const info = useSelector((state) => state.loca.value);
   const isOpen = useSelector((state) => state.loca.boolean);
   const type = useSelector((state) => state.loca.type);
-
-  //마커를 렌더링해줄 정보를 location 변수에 담아줌
-  useEffect(() => {
-    setLocation(marker);
-  }, [marker]);
-
-  //지도의 중심을 바꿈
-  useEffect(() => {
-    if (map) {
-      map.setCenter(state);
-      map.setZoom(18, true);
-    }
-    if (infoWindow) {
-      infoWindow.close();
-    }
-  }, [state]);
-
-  useEffect(() => {
-    if (type !== "") {
-      setLocation(marker.filter((shop) => shop.shopBsType === type));
-    }
-    console.log(location);
-  }, [type]);
 
   //naverMap의 map과 infowindow에 useRef말고 useState로 접근
   const [map, setMap] = useState(null);
   const [infoWindow, setInfoWindow] = useState(null);
 
+  //마커를 렌더링해줄 정보를 location 변수에 담아줌
+  useEffect(() => {
+    setLocation(shopInfo);
+  }, [shopInfo]);
+
+  //지도의 중심이 바뀌면 지도의 줌정도을 바꿈
+  useEffect(() => {
+    if (map) {
+      isOpen ? map.setZoom(18, true) : map.setZoom(14, true);
+    }
+
+    if (infoWindow) {
+      infoWindow.close();
+    }
+  }, [pickedShopLocation]);
+
+  //가게 종류별로 필터링
+  useEffect(() => {
+    if (type !== "") {
+      setLocation(shopInfo.filter((shop) => shop.shopBsType === type));
+    }
+  }, [type]);
+
   //infoWindow 설정
   if (infoWindow && isOpen) {
     infoWindow.setContent(
-      `<div style="padding:15px; font-size:16px;">
+      `<div style="padding:15px; font-size:14px; width: 226px; height: 146px; box-sizing: border-box;">
         <h4 style="margin-top:0px; margin-bottom:10px;">` +
         info.shopName +
         `</h4>
@@ -61,30 +61,27 @@ const Map = () => {
         info.shopTel +
         ` </span></div>`
     );
-    const infoState = state.destinationPoint(0, 15);
+    const infoState = pickedShopLocation.destinationPoint(0, 15);
     if (isOpen) {
       infoWindow.open(map, infoState);
     }
   }
 
   const markerClick = () => {
-    dispatch(
-      MapSlice.actions.isOpen({
-        isOpen: !isOpen,
-      })
-    );
+    dispatch(MapSlice.actions.isOpen(!isOpen));
 
     infoWindow.close();
   };
 
+  //마커 정보가 들어오지 않았을때 표시해줄 화면 => intro 페이지 제작후 삭제
   if (location.length === 0) {
-    return <NaverMap center={state} defaultZoom={15} ref={setMap}></NaverMap>;
+    return <NaverMap></NaverMap>;
   }
 
   return (
     <NaverMap
-      defaultCenter={state}
-      defaultZoom={13}
+      center={pickedShopLocation}
+      defaultZoom={16}
       ref={setMap}
       scrollWheel={true}
     >
