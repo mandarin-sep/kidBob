@@ -7,6 +7,7 @@ const Map = () => {
   const navermaps = useNavermaps();
 
   const [location, setLocation] = useState([]);
+  const [zoomControl, setZoomControl] = useState(true);
   const pickedShopLocation = useSelector((state) => state.loca.location);
   const shopInfo = useSelector((state) => state.daegu.value);
   const info = useSelector((state) => state.loca.value);
@@ -22,10 +23,15 @@ const Map = () => {
     setLocation(shopInfo);
   }, [shopInfo]);
 
-  //지도의 중심이 바뀌면 지도의 줌정도을 바꿈
+  //지도의 중심이 바뀌면 지도의 줌단계를 바꿈
   useEffect(() => {
     if (map) {
-      isOpen ? map.setZoom(18, true) : map.setZoom(14, true);
+      if (isOpen) {
+        map.updateBy(pickedShopLocation, 18);
+        setZoomControl(false);
+      } else {
+        map.setZoom(14, true);
+      }
     }
 
     if (infoWindow) {
@@ -78,7 +84,7 @@ const Map = () => {
       center={pickedShopLocation}
       zoom={14}
       ref={setMap}
-      scrollWheel={true}
+      scrollWheel={zoomControl}
     >
       {location.map((stat) => {
         return (
