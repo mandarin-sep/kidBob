@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NaverMap, useNavermaps, Marker, InfoWindow } from "react-naver-maps";
-import { MapSlice } from "../store/MapSlice";
 
 const Map = () => {
   //네이버 지도 api 호출
   const navermaps = useNavermaps();
 
   const [location, setLocation] = useState([]);
-  const dispatch = useDispatch();
   const pickedShopLocation = useSelector((state) => state.loca.location);
   const shopInfo = useSelector((state) => state.daegu.value);
   const info = useSelector((state) => state.loca.value);
@@ -40,6 +38,9 @@ const Map = () => {
     if (type !== "") {
       setLocation(shopInfo.filter((shop) => shop.shopBsType === type));
     }
+    if (infoWindow) {
+      infoWindow.close();
+    }
   }, [type]);
 
   //infoWindow 설정
@@ -67,12 +68,6 @@ const Map = () => {
     }
   }
 
-  const markerClick = () => {
-    dispatch(MapSlice.actions.isOpen(!isOpen));
-
-    infoWindow.close();
-  };
-
   //마커 정보가 들어오지 않았을때 표시해줄 화면 => intro 페이지 제작후 삭제
   if (location.length === 0) {
     return <NaverMap></NaverMap>;
@@ -81,7 +76,7 @@ const Map = () => {
   return (
     <NaverMap
       center={pickedShopLocation}
-      defaultZoom={16}
+      zoom={14}
       ref={setMap}
       scrollWheel={true}
     >
@@ -90,8 +85,6 @@ const Map = () => {
           <Marker
             position={new navermaps.LatLng(stat.shopLat, stat.shopLon)}
             title={stat.shopName}
-            clickable={true}
-            onClick={markerClick}
           />
         );
       })}

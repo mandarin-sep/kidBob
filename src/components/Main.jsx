@@ -40,11 +40,16 @@ const Main = () => {
   };
 
   const handleDataFetch = () => {
+    if (value === "") {
+      alert("찾길 원하는 행정구역을 선택해주세요");
+      return;
+    }
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(DaeGu[index]));
     dispatch(MapSlice.actions.isOpen(false));
     dispatch(MapSlice.actions.setShopType(""));
   };
+
   return (
     <Container>
       <StyledSelect name="area" id="area-select" onChange={handleChange}>
@@ -87,14 +92,17 @@ const StyledSelect = styled.select`
 `;
 
 const StyledButton = styled.button`
-  width: 24%;
+  width: 28%;
   height: 100%;
   font-size: 12px;
+  padding: 2px;
 `;
 
 const Container = styled.div`
   margin: 8px;
   height: 4vh;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default Main;
