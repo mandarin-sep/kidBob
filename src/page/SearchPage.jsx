@@ -1,5 +1,5 @@
-import Main from "./Main";
-import List from "./List";
+import Main from "../components/Main";
+import List from "../components/List";
 
 export default function SearchPage() {
   return (
