@@ -7,6 +7,7 @@ import ListItem from "./ListItem";
 const List = () => {
   const value = useSelector((state) => state.daegu.value);
   const type = useSelector((state) => state.loca.type);
+  const status = useSelector((state) => state.daegu.status);
   const [shopList, setShopList] = useState([]);
 
   useEffect(() => {
@@ -21,6 +22,10 @@ const List = () => {
 
   if (value.length === 0) {
     return <div>없음</div>;
+  }
+
+  if (status === "Loading") {
+    return <div>로딩</div>;
   }
 
   return (
