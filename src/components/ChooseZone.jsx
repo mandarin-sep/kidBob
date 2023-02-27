@@ -98,17 +98,19 @@ const StyledButton = styled.button`
   height: 100%;
   font-size: 12px;
   padding: 2px;
+  background-color: #69a0f0;
+  color: #fff;
+  text-align: center;
 
   transition: all 100ms ease-in-out;
 
   &:hover {
     transform: scale(1.03);
-    border-color: #8f8f8f;
   }
 `;
 
 const Container = styled.div`
-  margin: 8px;
+  margin: 8px 15px;
   height: 2vh;
   display: flex;
   justify-content: space-between;

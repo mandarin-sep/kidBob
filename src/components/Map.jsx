@@ -52,8 +52,8 @@ const Map = () => {
   //infoWindow 설정
   if (infoWindow && isOpen) {
     infoWindow.setContent(
-      `<span style="font-size:14px; width: 206px; height: 36px; box-sizing: border-box; line-height: 14px;">
-        ${info.shopName}
+      `<span style="font-size:14px; width: 206px; height: 36px; box-sizing: border-box; line-height: 14px; padding: 4px;">
+         ${info.shopName} 
         </span>`
     );
     const infoState = pickedShopLocation.destinationPoint(0, 15);

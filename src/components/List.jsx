@@ -24,6 +24,10 @@ const List = () => {
     return <div>없음</div>;
   }
 
+  if (status === "Loading") {
+    return <div>로딩중</div>;
+  }
+
   return (
     <>
       <ShopNameSearch value={value} setShopList={setShopList} />
@@ -48,13 +52,14 @@ const StyledUl = styled.ul`
   padding: 0;
   position: relative;
   overflow-x: hidden;
+  margin: 0;
 
   &::-webkit-scrollbar {
     width: 8px;
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #217af4;
+    background: #c9dbf5;
   }
   &::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);
