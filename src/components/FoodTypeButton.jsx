@@ -1,6 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
 import { MapSlice } from "../store/MapSlice";
+import { ReactComponent as Cafe } from "../assets/cafe.svg";
+import { ReactComponent as Pizza } from "../assets/pizza.svg";
+import { ReactComponent as Hamburger } from "../assets/hamburger.svg";
+import { ReactComponent as Hansik } from "../assets/hansik.svg";
+import { ReactComponent as Jjajangmyun } from "../assets/jjajangmyun.svg";
+import { ReactComponent as Kimbap } from "../assets/kimbap.svg";
+import { ReactComponent as Store } from "../assets/store.svg";
 
 const FoodTypeButton = () => {
   const dispatch = useDispatch();
@@ -12,36 +20,66 @@ const FoodTypeButton = () => {
     dispatch(MapSlice.actions.isOpen(false));
   };
   return (
-    <>
-      <button id="12" onClick={handleClick}>
+    <FoodButtonContainer>
+      <StyledButton id="12" onClick={handleClick}>
+        <Kimbap width="16" height="16" />
         분식
-      </button>
-      <button id="13" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="13" onClick={handleClick}>
+        <Hansik width="16" height="16" />
         한식
-      </button>
-      <button id="11" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="11" onClick={handleClick}>
+        <Jjajangmyun width="16" height="16" />
         중식
-      </button>
-      <button id="15" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="15" onClick={handleClick}>
+        <Pizza width="16" height="16" />
         피자
-      </button>
-      <button id="17" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="17" onClick={handleClick}>
+        <Hamburger width="16" height="16" />
         패스트푸드
-      </button>
-      <button id="18" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="18" onClick={handleClick}>
         돈까스
-      </button>
-      <button id="19" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="19" onClick={handleClick}>
         도시락/죽
-      </button>
-      <button id="20" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="20" onClick={handleClick}>
+        <Cafe width="16" height="16" />
         카페
-      </button>
-      <button id="23" onClick={handleClick}>
+      </StyledButton>
+      <StyledButton id="23" onClick={handleClick}>
+        <Store width="16" height="16" />
         편의점
-      </button>
-    </>
+      </StyledButton>
+    </FoodButtonContainer>
   );
 };
 
 export default FoodTypeButton;
+
+const StyledButton = styled.button`
+  border-radius: 0px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px 11px 13px;
+  background-color: rgba(0, 0, 0, 0);
+  transition: color 0.25s;
+
+  &:hover {
+    color: #0475f4;
+  }
+`;
+
+const FoodButtonContainer = styled.article`
+  position: absolute;
+  top: 2vh;
+  left: 1vw;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+`;

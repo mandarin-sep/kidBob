@@ -46,21 +46,9 @@ const Map = () => {
   //infoWindow 설정
   if (infoWindow && isOpen) {
     infoWindow.setContent(
-      `<div style="padding:15px; font-size:14px; width: 226px; height: 146px; box-sizing: border-box;">
-        <h4 style="margin-top:0px; margin-bottom:10px;">` +
-        info.shopName +
-        `</h4>
-        <span>가게주소:` +
-        info.shopAddr +
-        `</span>
-      <br />
-      <span>도로명주소:` +
-        info.shopRoadAddr +
-        `</span>
-      <br />
-      <span>가게 전화:` +
-        info.shopTel +
-        ` </span></div>`
+      `<span style="font-size:14px; width: 206px; height: 36px; box-sizing: border-box; line-height: 14px;">
+        ${info.shopName}
+        </span>`
     );
     const infoState = pickedShopLocation.destinationPoint(0, 15);
     if (isOpen) {

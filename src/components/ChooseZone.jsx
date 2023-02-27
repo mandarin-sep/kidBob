@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { asyncDaegu } from "../store/daeguSlice";
 import { MapSlice } from "../store/MapSlice";
 
-const Main = () => {
+const ChooseZone = () => {
   const { naver } = window;
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
@@ -85,24 +85,33 @@ const Main = () => {
 };
 
 const StyledSelect = styled.select`
-  width: 70%;
+  width: 80%;
   height: 100%;
-  font-size: 18px;
+  font-size: 14px;
   margin-right: 4px;
+
+  border-radius: 4px;
 `;
 
 const StyledButton = styled.button`
-  width: 28%;
+  width: 20%;
   height: 100%;
   font-size: 12px;
   padding: 2px;
+
+  transition: all 100ms ease-in-out;
+
+  &:hover {
+    transform: scale(1.03);
+    border-color: #8f8f8f;
+  }
 `;
 
 const Container = styled.div`
   margin: 8px;
-  height: 4vh;
+  height: 2vh;
   display: flex;
   justify-content: space-between;
 `;
 
-export default Main;
+export default ChooseZone;

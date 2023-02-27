@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { MapSlice } from "../store/MapSlice";
+
 import ListItem from "./ListItem";
 
 const List = () => {
@@ -40,11 +40,23 @@ const List = () => {
 
 const StyledUl = styled.ul`
   overflow-y: scroll;
-  height: 90vh;
+  height: 100%;
   white-space: nowrap;
   list-style: none;
   padding: 0;
   position: relative;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #217af4;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+  }
 `;
 
 export default List;
