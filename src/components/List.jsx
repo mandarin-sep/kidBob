@@ -22,7 +22,7 @@ const List = () => {
   }, [type]);
 
   if (value.length === 0) {
-    return <div>없음</div>;
+    return <div></div>;
   }
 
   if (status === "Loading") {
