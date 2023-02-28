@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import Loading from "../page/Loading";
 import ListItem from "./ListItem";
 import ShopNameSearch from "./ShopNameSearch";
 
@@ -25,7 +26,7 @@ const List = () => {
   }
 
   if (status === "Loading") {
-    return <div>로딩중</div>;
+    return <Loading />;
   }
 
   return (
@@ -37,7 +38,7 @@ const List = () => {
             return <ListItem item={item} key={item.shopId} />;
           })
         ) : (
-          <div>로딩중</div>
+          <Loading />
         )}
       </StyledUl>
     </>
