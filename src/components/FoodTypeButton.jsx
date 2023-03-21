@@ -9,6 +9,8 @@ import { ReactComponent as Hansik } from "../assets/hansik.svg";
 import { ReactComponent as Jjajangmyun } from "../assets/jjajangmyun.svg";
 import { ReactComponent as Kimbap } from "../assets/kimbap.svg";
 import { ReactComponent as Store } from "../assets/store.svg";
+import { ReactComponent as Donggga } from "../assets/dongggas.svg";
+import { ReactComponent as Dosirock } from "../assets/dosirock.svg";
 
 const FoodTypeButton = () => {
   const dispatch = useDispatch();
@@ -42,9 +44,11 @@ const FoodTypeButton = () => {
         패스트푸드
       </StyledButton>
       <StyledButton id="18" onClick={handleClick}>
+        <Donggga width="16" height="16" />
         돈까스
       </StyledButton>
       <StyledButton id="19" onClick={handleClick}>
+        <Dosirock width="16" height="16" />
         도시락/죽
       </StyledButton>
       <StyledButton id="20" onClick={handleClick}>
