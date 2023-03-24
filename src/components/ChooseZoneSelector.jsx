@@ -53,7 +53,7 @@ const ChooseZone = () => {
   return (
     <Container>
       <StyledSelect name="area" id="area-select" onChange={handleChange}>
-        <option value="">행정구역을 선택해주세요</option>
+        <option value="">찾고 싶은 행정구역을 선택해주세요</option>
         <option value="북구" id="BukGu">
           북구
         </option>
@@ -110,8 +110,8 @@ const StyledButton = styled.button`
 `;
 
 const Container = styled.div`
-  margin: 8px 15px;
-  height: 2vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
 `;
