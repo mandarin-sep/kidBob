@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ChooseZone from "../components/ChooseZone";
 import List from "../components/List";
 
-export default function SearchPage() {
+export default function SearchSection() {
   return (
     <StyledContainer>
       <ChooseZone />
