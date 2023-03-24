@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { asyncDaegu } from "../store/daeguSlice";
 import { MapSlice } from "../store/MapSlice";
+import { useNavigate } from "react-router-dom";
 
 const ChooseZone = () => {
   const { naver } = window;
@@ -11,6 +12,7 @@ const ChooseZone = () => {
   const [value, setValue] = useState("");
   const data = useSelector((state) => state);
   const state = useSelector((state) => state.loca.location);
+  const navigate = useNavigate();
 
   //onChange함수에서 적용해줄 좌표값
   const BukGu = new naver.maps.LatLng(35.905731, 128.563439);
@@ -48,6 +50,7 @@ const ChooseZone = () => {
     dispatch(MapSlice.actions.setLocation(DaeGu[index]));
     dispatch(MapSlice.actions.isOpen(false));
     dispatch(MapSlice.actions.setShopType(""));
+    navigate("/main");
   };
 
   return (
@@ -101,6 +104,7 @@ const StyledButton = styled.button`
   background-color: #69a0f0;
   color: #fff;
   text-align: center;
+  box-sizing: border-box;
 
   transition: all 100ms ease-in-out;
 

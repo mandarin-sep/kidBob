@@ -4,8 +4,16 @@ import { Container as MapDiv } from "react-naver-maps";
 import styled from "styled-components";
 import SearchSection from "./SearchSection";
 import FoodTypeButton from "../components/FoodTypeButton";
+import Loading from "./Loading";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
+  const status = useSelector((state) => state.daegu.status);
+
+  if (status === "Loading") {
+    return <Loading />;
+  }
+
   return (
     <AppContainer>
       <SearchSection />
