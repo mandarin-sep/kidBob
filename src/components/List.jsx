@@ -9,10 +9,14 @@ const List = () => {
   const value = useSelector((state) => state.daegu.value);
   const type = useSelector((state) => state.loca.type);
   const status = useSelector((state) => state.daegu.status);
+  const division = useSelector((state) => state.loca.division);
   const [shopList, setShopList] = useState([]);
 
   useEffect(() => {
-    setShopList(value);
+    let filteredValue = value.filter(
+      (item) => item.shopAddr.split(" ")[0] === division
+    );
+    setShopList(filteredValue);
   }, [value]);
 
   useEffect(() => {

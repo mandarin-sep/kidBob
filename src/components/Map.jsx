@@ -13,6 +13,7 @@ const Map = () => {
   const info = useSelector((state) => state.loca.value);
   const isOpen = useSelector((state) => state.loca.boolean);
   const type = useSelector((state) => state.loca.type);
+  const division = useSelector((state) => state.loca.division);
 
   //naverMap의 map과 infowindow에 useRef말고 useState로 접근
   const [map, setMap] = useState(null);
@@ -20,7 +21,11 @@ const Map = () => {
 
   //마커를 렌더링해줄 정보를 location 변수에 담아줌
   useEffect(() => {
-    setLocation(shopInfo);
+    console.log(division);
+    let filteredInfo = shopInfo.filter(
+      (item) => item.shopAddr.split(" ")[0] === division
+    );
+    setLocation(filteredInfo);
   }, [shopInfo]);
 
   //지도의 중심이 바뀌면 지도의 줌단계를 바꿈

@@ -9,6 +9,7 @@ export const MapSlice = createSlice({
     boolean: false,
     value: {},
     type: "",
+    division: "",
   },
   reducers: {
     setLocation: (state, action) => {
@@ -22,6 +23,9 @@ export const MapSlice = createSlice({
     },
     setShopType: (state, action) => {
       state.type = action.payload;
+    },
+    setDivision: (state, action) => {
+      state.division = action.payload;
     },
   },
 });

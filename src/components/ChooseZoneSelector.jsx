@@ -4,12 +4,14 @@ import styled from "styled-components";
 import { asyncDaegu } from "../store/daeguSlice";
 import { MapSlice } from "../store/MapSlice";
 import { useNavigate } from "react-router-dom";
+import SelectBox from "./SelectBox";
 
 const ChooseZone = () => {
   const { naver } = window;
   const dispatch = useDispatch();
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
+  const [division, setDivision] = useState("");
   const data = useSelector((state) => state);
   const state = useSelector((state) => state.loca.location);
   const navigate = useNavigate();
@@ -46,10 +48,16 @@ const ChooseZone = () => {
       alert("찾길 원하는 행정구역을 선택해주세요");
       return;
     }
+
+    if (division.length === 0) {
+      alert("동/읍/면을 선택하세요");
+      return;
+    }
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(DaeGu[index]));
     dispatch(MapSlice.actions.isOpen(false));
     dispatch(MapSlice.actions.setShopType(""));
+    dispatch(MapSlice.actions.setDivision(division));
     navigate("/main");
   };
 
@@ -82,17 +90,17 @@ const ChooseZone = () => {
           달성군
         </option>
       </StyledSelect>
+      <SelectBox location={value} setDivision={setDivision} />
       <StyledButton onClick={handleDataFetch}>찾아보기</StyledButton>
     </Container>
   );
 };
 
 const StyledSelect = styled.select`
-  width: 80%;
+  width: 75%;
   height: 100%;
   font-size: 14px;
   margin-right: 4px;
-
   border-radius: 4px;
 `;
 
@@ -111,6 +119,7 @@ const StyledButton = styled.button`
   &:hover {
     transform: scale(1.03);
   }
+  box-sizing: border-box;
 `;
 
 const Container = styled.div`
