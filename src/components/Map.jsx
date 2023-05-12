@@ -35,7 +35,7 @@ const Map = () => {
         map.updateBy(pickedShopLocation, 18);
         setZoomControl(false);
       } else {
-        map.setZoom(14, true);
+        map.setZoom(16, true);
       }
     }
 
@@ -75,7 +75,6 @@ const Map = () => {
   return (
     <NaverMap
       center={pickedShopLocation}
-      zoom={14}
       ref={setMap}
       scrollWheel={zoomControl}
     >
