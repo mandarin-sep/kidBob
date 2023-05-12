@@ -5,6 +5,7 @@ import { asyncDaegu } from "../store/daeguSlice";
 import { MapSlice } from "../store/MapSlice";
 import { useNavigate } from "react-router-dom";
 import SelectBox from "./SelectBox";
+import pickCenter from "../assets/pickCenter.js";
 
 const ChooseZone = () => {
   const { naver } = window;
@@ -53,8 +54,17 @@ const ChooseZone = () => {
       alert("동/읍/면을 선택하세요");
       return;
     }
+
+    //동/읍/면의 중심 좌표 설정할 함수
+    const centerValue = pickCenter(value, division);
+    const centerPosition = new naver.maps.LatLng(
+      centerValue[0],
+      centerValue[1]
+    );
+
+    console.log(centerPosition);
     dispatch(asyncDaegu(value));
-    dispatch(MapSlice.actions.setLocation(DaeGu[index]));
+    dispatch(MapSlice.actions.setLocation(centerPosition));
     dispatch(MapSlice.actions.isOpen(false));
     dispatch(MapSlice.actions.setShopType(""));
     dispatch(MapSlice.actions.setDivision(division));
