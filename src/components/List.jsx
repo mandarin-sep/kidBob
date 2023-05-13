@@ -26,6 +26,8 @@ const List = () => {
     if (type !== "") {
       setShopList(filteredShopList.filter((shop) => shop.shopBsType === type));
     }
+
+    if (type === "all") setShopList(filteredShopList);
   }, [type]);
 
   if (value.length === 0) {

@@ -50,6 +50,9 @@ const Map = () => {
     if (type !== "") {
       setLocation(filteredShopList.filter((shop) => shop.shopBsType === type));
     }
+
+    if (type === "all") setLocation(filteredShopList);
+
     if (infoWindow) {
       infoWindow.close();
     }
