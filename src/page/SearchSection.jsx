@@ -14,7 +14,7 @@ export default function SearchSection() {
 }
 
 const StyledContainer = styled.div`
-  width: 20vw;
+  width: 23vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,5 +22,5 @@ const StyledContainer = styled.div`
 
 const ZoneSelectorContainer = styled.div`
   margin: 8px 15px;
-  height: 2vh;
+  height: 3vh;
 `;
