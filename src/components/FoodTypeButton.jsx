@@ -23,6 +23,10 @@ const FoodTypeButton = () => {
   };
   return (
     <FoodButtonContainer>
+      <StyledButton id="all" onClick={handleClick}>
+        {"   "}
+        전체 보기
+      </StyledButton>
       <StyledButton id="12" onClick={handleClick}>
         <Kimbap width="16" height="16" />
         분식

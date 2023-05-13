@@ -31,7 +31,7 @@ const MainBadge = styled.img`
 
 const ZoneSelectorContainer = styled.div`
   width: 420px;
-  height: 60px;
+  height: 30px;
   z-index: 99;
   margin: 0 auto;
   font-size: 32px !important;

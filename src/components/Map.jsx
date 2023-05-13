@@ -8,6 +8,7 @@ const Map = () => {
 
   const [location, setLocation] = useState([]);
   const [zoomControl, setZoomControl] = useState(true);
+  const [filteredShopList, setFilteredShopList] = useState([]);
   const pickedShopLocation = useSelector((state) => state.loca.location);
   const shopInfo = useSelector((state) => state.daegu.value);
   const info = useSelector((state) => state.loca.value);
@@ -25,6 +26,7 @@ const Map = () => {
       (item) => item.shopAddr.split(" ")[0] === division
     );
     setLocation(filteredInfo);
+    setFilteredShopList(filteredInfo);
   }, [shopInfo]);
 
   //지도의 중심이 바뀌면 지도의 줌단계를 바꿈
@@ -46,8 +48,11 @@ const Map = () => {
   //가게 종류별로 필터링
   useEffect(() => {
     if (type !== "") {
-      setLocation(shopInfo.filter((shop) => shop.shopBsType === type));
+      setLocation(filteredShopList.filter((shop) => shop.shopBsType === type));
     }
+
+    if (type === "all") setLocation(filteredShopList);
+
     if (infoWindow) {
       infoWindow.close();
     }
