@@ -1,4 +1,4 @@
-import latlng from "./LatLng.json";
+import latlng from "./assets/LatLng.json";
 
 export default function pickCenter(distrinct, division) {
   let filteredData = latlng.filter((item) => {

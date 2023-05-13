@@ -5,7 +5,7 @@ import { asyncDaegu } from "../store/daeguSlice";
 import { MapSlice } from "../store/MapSlice";
 import { useNavigate } from "react-router-dom";
 import SelectBox from "./SelectBox";
-import pickCenter from "../assets/pickCenter.js";
+import pickCenter from "../pickCenter.js";
 
 const ChooseZone = () => {
   const { naver } = window;
@@ -16,28 +16,6 @@ const ChooseZone = () => {
   const data = useSelector((state) => state);
   const state = useSelector((state) => state.loca.location);
   const navigate = useNavigate();
-
-  //onChange함수에서 적용해줄 좌표값
-  const BukGu = new naver.maps.LatLng(35.905731, 128.563439);
-  const DalSeoGu = new naver.maps.LatLng(35.836634, 128.517682);
-  const DalSungGun = new naver.maps.LatLng(35.723277, 128.538638);
-  const JungGu = new naver.maps.LatLng(35.866423, 128.593182);
-  const DongGu = new naver.maps.LatLng(35.895176, 128.671143);
-  const SeoGu = new naver.maps.LatLng(35.87176, 128.5592);
-  const SuSeongGu = new naver.maps.LatLng(35.840878, 128.662889);
-  const NamGu = new naver.maps.LatLng(35.844144, 128.584339);
-
-  const DaeGu = [
-    "",
-    BukGu,
-    JungGu,
-    DongGu,
-    SeoGu,
-    SuSeongGu,
-    NamGu,
-    DalSeoGu,
-    DalSungGun,
-  ];
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -61,8 +39,6 @@ const ChooseZone = () => {
       centerValue[0],
       centerValue[1]
     );
-
-    console.log(centerPosition);
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(centerPosition));
     dispatch(MapSlice.actions.isOpen(false));

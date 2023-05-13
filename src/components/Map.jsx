@@ -21,7 +21,6 @@ const Map = () => {
 
   //마커를 렌더링해줄 정보를 location 변수에 담아줌
   useEffect(() => {
-    console.log(division);
     let filteredInfo = shopInfo.filter(
       (item) => item.shopAddr.split(" ")[0] === division
     );
@@ -65,11 +64,6 @@ const Map = () => {
     if (isOpen) {
       infoWindow.open(map, infoState);
     }
-  }
-
-  //마커 정보가 들어오지 않았을때 표시해줄 화면 => intro 페이지 제작후 삭제
-  if (location.length === 0) {
-    return <NaverMap></NaverMap>;
   }
 
   return (
