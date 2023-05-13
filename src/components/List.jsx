@@ -14,11 +14,12 @@ const List = () => {
   const [filteredShopList, setFilteredShopList] = useState([]);
 
   useEffect(() => {
-    let filteredValue = value.filter(
+    let filteredList = value.filter(
       (item) => item.shopAddr.split(" ")[0] === division
     );
-    setFilteredShopList(filteredValue);
-    setShopList(filteredValue);
+
+    setShopList(filteredList);
+    setFilteredShopList(filteredList);
   }, [value]);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const List = () => {
 
   return (
     <>
-      <ShopNameSearch value={value} setShopList={setShopList} />
+      <ShopNameSearch value={value} />
       <StyledUl>
         {JSON.stringify(shopList) !== "{}" ? (
           shopList.map((item) => {

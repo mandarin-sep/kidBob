@@ -15,8 +15,17 @@ const DaeguSlice = createSlice({
   name: "DaeguSlice",
   initialState: {
     value: [],
+    resetList: [],
     totalCount: 0,
     status: "Welcome",
+  },
+  reducers: {
+    setValue: (state, action) => {
+      state.value = action.payload;
+    },
+    setReturn: (state, action) => {
+      state.resetList = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncDaegu.pending, (state, action) => {

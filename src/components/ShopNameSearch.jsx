@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import DaeguSlice from "../store/daeguSlice";
 
-const ShopNameSearch = ({ value, setShopList }) => {
+const ShopNameSearch = ({ value }) => {
   const [shopName, setShopName] = useState("");
+  const resetList = useSelector((state) => state.daegu.resetList);
+  const dispatch = useDispatch();
 
   const shopNameValue = (e) => {
     setTimeout(() => {
@@ -13,12 +17,19 @@ const ShopNameSearch = ({ value, setShopList }) => {
 
   const shopNameSearchClick = (e) => {
     e.preventDefault();
-    setShopList(
-      value.filter((listItem) => {
-        const itemShopName = listItem.shopName;
-        return itemShopName.includes(shopName);
-      })
-    );
+
+    //빈창으로 검색할 경우 전체 List 보여줌
+    if (shopName === "") {
+      dispatch(DaeguSlice.actions.setValue(resetList));
+      return;
+    }
+
+    let filteredList = value.filter((listItem) => {
+      const itemShopName = listItem.shopName;
+      return itemShopName.includes(shopName);
+    });
+    dispatch(DaeguSlice.actions.setReturn(value));
+    dispatch(DaeguSlice.actions.setValue(filteredList));
   };
 
   return (
