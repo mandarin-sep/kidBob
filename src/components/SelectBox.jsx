@@ -200,7 +200,7 @@ const SelectBox = ({ location, setDivision }) => {
 const StyledSelect = styled.select`
   width: 30%;
   height: 100%;
-  font-size: 14px;
+  font-size: 1.6vh;
   margin-right: 4px;
   border-radius: 4px;
 `;

@@ -62,7 +62,6 @@ const ChooseZone = () => {
       centerValue[1]
     );
 
-    console.log(centerPosition);
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(centerPosition));
     dispatch(MapSlice.actions.isOpen(false));
@@ -109,7 +108,7 @@ const ChooseZone = () => {
 const StyledSelect = styled.select`
   width: 75%;
   height: 100%;
-  font-size: 14px;
+  font-size: 1.6vh;
   margin-right: 4px;
   border-radius: 4px;
 `;
@@ -117,7 +116,7 @@ const StyledSelect = styled.select`
 const StyledButton = styled.button`
   width: 20%;
   height: 100%;
-  font-size: 12px;
+  font-size: 1vh;
   padding: 2px;
   background-color: #69a0f0;
   color: #fff;

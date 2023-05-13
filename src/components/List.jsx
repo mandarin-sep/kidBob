@@ -11,17 +11,20 @@ const List = () => {
   const status = useSelector((state) => state.daegu.status);
   const division = useSelector((state) => state.loca.division);
   const [shopList, setShopList] = useState([]);
+  const [filteredShopList, setFilteredShopList] = useState([]);
 
   useEffect(() => {
-    let filteredValue = value.filter(
+    let filteredList = value.filter(
       (item) => item.shopAddr.split(" ")[0] === division
     );
-    setShopList(filteredValue);
+
+    setShopList(filteredList);
+    setFilteredShopList(filteredList);
   }, [value]);
 
   useEffect(() => {
     if (type !== "") {
-      setShopList(value.filter((shop) => shop.shopBsType === type));
+      setShopList(filteredShopList.filter((shop) => shop.shopBsType === type));
     }
   }, [type]);
 
@@ -35,7 +38,7 @@ const List = () => {
 
   return (
     <>
-      <ShopNameSearch value={value} setShopList={setShopList} />
+      <ShopNameSearch value={value} />
       <StyledUl>
         {JSON.stringify(shopList) !== "{}" ? (
           shopList.map((item) => {
