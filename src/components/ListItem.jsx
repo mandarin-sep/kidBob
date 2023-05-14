@@ -1,6 +1,7 @@
 import { MapSlice } from "../store/MapSlice";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import shopType from "../shopType";
 
 const ListItem = ({ item }) => {
   const { naver } = window;
@@ -36,57 +37,6 @@ const ListItem = ({ item }) => {
     dispatch(MapSlice.actions.isOpen({ isOpen: true }));
   };
 
-  //shopBsType를 한국어로 변환
-  let shopType;
-  switch (shopBsType) {
-    case "10":
-      shopType = "치킨/찜닭";
-      break;
-    case "11":
-      shopType = "중식";
-      break;
-    case "12":
-      shopType = "분식";
-      break;
-    case "13":
-      shopType = "한식";
-      break;
-    case "14":
-      shopType = "찜/탕";
-      break;
-    case "15":
-      shopType = "피자";
-      break;
-    case "16":
-      shopType = "족발/보쌈";
-      break;
-    case "17":
-      shopType = "패스트푸드";
-      break;
-    case "18":
-      shopType = "돈까스/일식";
-      break;
-    case "19":
-      shopType = "도시락/죽";
-      break;
-    case "20":
-      shopType = "카페/디저트";
-      break;
-    case "21":
-      shopType = "아시안/양식";
-      break;
-    case "22":
-      shopType = "반찬/신선";
-      break;
-    case "23":
-      shopType = "편의점";
-      break;
-
-    default:
-      shopType = "기타";
-      break;
-  }
-
   //평일 영업시간
   let shopTime;
   if (wdToTime === "0000" && wdFrTime === "0000") {
@@ -101,7 +51,7 @@ const ListItem = ({ item }) => {
     <StyledLi key={item.shopId} onClick={handleClick}>
       <div>
         <NameArea>{shopName}</NameArea>
-        <ShopTypeArea>{shopType}</ShopTypeArea>
+        <ShopTypeArea>{shopType(shopBsType)}</ShopTypeArea>
       </div>
 
       <div style={{ marginTop: "8px" }}>
