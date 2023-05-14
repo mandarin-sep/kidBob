@@ -16,6 +16,7 @@ const Map = () => {
   const clickedShop = useSelector((state) => state.loca.info);
   const type = useSelector((state) => state.loca.type);
   const division = useSelector((state) => state.loca.division);
+  const [myPosition, setMyPosition] = useState();
 
   const [open, setOpen] = useState(false);
 
@@ -89,6 +90,25 @@ const Map = () => {
     infoWindow.open(map, ref[0]);
   }
 
+  //현재 위치 표시
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const LatLng = new navermaps.LatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        );
+        setMyPosition(LatLng);
+      });
+    }
+    console.log(icon);
+  }, []);
+
+  let icon = {
+    url: "https://cdn.icon-icons.com/icons2/317/PNG/512/map-marker-icon_34392.png",
+    scaledSize: new naver.maps.Size(32, 32),
+  };
+
   //마커를 렌더링해줄 정보를 location 변수에 담아줌
   useEffect(() => {
     let filteredInfo = shopInfo.filter(
@@ -104,7 +124,7 @@ const Map = () => {
     if (map) {
       if (isClick) {
         map.updateBy(pickedShopLocation, 18);
-        setZoomControl(false);
+        setZoomControl(true);
       } else {
         map.setZoom(16, true);
       }
@@ -139,6 +159,7 @@ const Map = () => {
       ref={setMap}
       scrollWheel={zoomControl}
     >
+      {myPosition && <Marker position={myPosition} icon={icon} />}
       {location.map((stat) => {
         return (
           <Marker
