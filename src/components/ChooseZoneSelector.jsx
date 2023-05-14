@@ -41,7 +41,7 @@ const ChooseZone = () => {
     );
     dispatch(asyncDaegu(value));
     dispatch(MapSlice.actions.setLocation(centerPosition));
-    dispatch(MapSlice.actions.isOpen(false));
+    dispatch(MapSlice.actions.isClick(false));
     dispatch(MapSlice.actions.setShopType(""));
     dispatch(MapSlice.actions.setDivision(division));
     navigate("/main");

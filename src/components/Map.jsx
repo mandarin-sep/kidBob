@@ -12,8 +12,8 @@ const Map = () => {
   const [filteredShopList, setFilteredShopList] = useState([]);
   const pickedShopLocation = useSelector((state) => state.loca.location);
   const shopInfo = useSelector((state) => state.daegu.value);
-  const info = useSelector((state) => state.loca.value);
-  const isOpen = useSelector((state) => state.loca.boolean);
+  const isClick = useSelector((state) => state.loca.boolean);
+  const clickedShop = useSelector((state) => state.loca.info);
   const type = useSelector((state) => state.loca.type);
   const division = useSelector((state) => state.loca.division);
 
@@ -66,6 +66,29 @@ const Map = () => {
     infoWindow.open(map, ref[0]);
   }
 
+  if (isClick) {
+    let ref = InfoRef.current.filter((item) => item);
+    ref = ref.filter((item) => {
+      return item.title === clickedShop.shopName;
+    });
+    infoWindow.setContent(
+      `<div style="box-sizing: border-box; padding: 8px;">
+      <div>
+      <h3 style="font-weight: 700; color: #0068c3; margin: 0 6px 0 0; line-height: 14px; display: inline;">
+      ${clickedShop.shopName} 
+      </h3>
+      <span style="color: #8f8f8f; font-size: 14px;">${shopType(
+        clickedShop.shopBsType
+      )}</span>
+      </div>
+      <div>${clickedShop.shopRoadAddr}</div>
+      </div>
+        `
+    );
+
+    infoWindow.open(map, ref[0]);
+  }
+
   //마커를 렌더링해줄 정보를 location 변수에 담아줌
   useEffect(() => {
     let filteredInfo = shopInfo.filter(
@@ -79,7 +102,7 @@ const Map = () => {
   //지도의 중심이 바뀌면 지도의 줌단계를 바꿈
   useEffect(() => {
     if (map) {
-      if (isOpen) {
+      if (isClick) {
         map.updateBy(pickedShopLocation, 18);
         setZoomControl(false);
       } else {

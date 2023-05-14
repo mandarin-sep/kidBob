@@ -21,20 +21,17 @@ const ListItem = ({ item }) => {
   } = item;
   const newCenter = new naver.maps.LatLng(shopLat, shopLon);
 
-  //가게 정보를 클릭했을때 가게의 marker에 띄워줄 infoWindow를 위한 정보를 RTK store에 전달
+  //가게 정보를 클릭했을때 해당 가게를 지도의 중심으로 이동
   const handleClick = () => {
     dispatch(MapSlice.actions.setLocation(newCenter));
     dispatch(
       MapSlice.actions.setInfo({
-        information: {
-          shopName,
-          shopRoadAddr,
-          shopTel,
-          shopAddr,
-        },
+        shopBsType,
+        shopName,
+        shopRoadAddr,
       })
     );
-    dispatch(MapSlice.actions.isOpen({ isOpen: true }));
+    dispatch(MapSlice.actions.isClick(true));
   };
 
   //평일 영업시간
