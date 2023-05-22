@@ -23,9 +23,6 @@ const DaeguSlice = createSlice({
     setValue: (state, action) => {
       state.value = action.payload;
     },
-    setReturn: (state, action) => {
-      state.resetList = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(asyncDaegu.pending, (state, action) => {
@@ -34,6 +31,7 @@ const DaeguSlice = createSlice({
     builder.addCase(asyncDaegu.fulfilled, (state, action) => {
       state.status = "Succecs";
       state.value = action.payload.items.item;
+      state.resetList = action.payload.items.item;
       state.totalCount = action.payload.totalCount;
     });
 

@@ -28,7 +28,6 @@ const ShopNameSearch = ({ value }) => {
       const itemShopName = listItem.shopName;
       return itemShopName.includes(shopName);
     });
-    dispatch(DaeguSlice.actions.setReturn(value));
     dispatch(DaeguSlice.actions.setValue(filteredList));
   };
 
