@@ -6,6 +6,9 @@ https://www.data.go.kr/data/15109168/openapi.do#/
 
 > 해당 API + 네이버 지도 API 를 활용한 급식카드 가맹점(사용처) 지도 제공 웹
 
+<bold>https://www.data.go.kr/bbs/ntc/selectNotice.do?originId=NOTICE_0000000003094<br>
+프로젝트의 핵심인 API의 제공이 5/26 - 5/30 간 중지됨에 따라서 프로젝트의 이용 또한 불가능할 예정입니다. </bold>
+
 ## 주요 기능
 
 - 행정 구역별 급식 카드 가맹점 위치 마커로 표시
