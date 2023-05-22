@@ -191,7 +191,11 @@ const SelectBox = ({ location, setDivision }) => {
   return (
     <StyledSelect onChange={handleChange}>
       {subOptions[location].map((item) => {
-        return <option value={item}>{item}</option>;
+        return (
+          <option value={item} key={item}>
+            {item}
+          </option>
+        );
       })}
     </StyledSelect>
   );
