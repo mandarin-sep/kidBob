@@ -31,7 +31,7 @@ const ListItem = ({ item }) => {
         shopRoadAddr,
       })
     );
-    dispatch(MapSlice.actions.isClick(true));
+    dispatch(MapSlice.actions.setItemClick(true));
   };
 
   //평일 영업시간

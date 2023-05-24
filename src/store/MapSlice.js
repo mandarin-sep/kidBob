@@ -6,7 +6,7 @@ export const MapSlice = createSlice({
   name: "MapSlice",
   initialState: {
     location: new naver.maps.LatLng(37.5656, 126.9769),
-    boolean: false,
+    listitemClicked: false,
     info: {},
     type: "",
     division: "",
@@ -18,8 +18,8 @@ export const MapSlice = createSlice({
     setInfo: (state, action) => {
       state.info = action.payload;
     },
-    isClick: (state, action) => {
-      state.boolean = action.payload;
+    setItemClick: (state, action) => {
+      state.listitemClicked = action.payload;
     },
     setShopType: (state, action) => {
       state.type = action.payload;

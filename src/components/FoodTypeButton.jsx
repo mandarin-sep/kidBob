@@ -19,7 +19,6 @@ const FoodTypeButton = () => {
   const handleClick = (e) => {
     const type = e.target.id;
     dispatch(MapSlice.actions.setShopType(type));
-    dispatch(MapSlice.actions.isOpen(false));
   };
   return (
     <FoodButtonContainer>
