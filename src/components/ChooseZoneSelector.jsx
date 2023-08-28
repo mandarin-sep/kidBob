@@ -10,26 +10,25 @@ import pickCenter from "../pickCenter.js";
 const ChooseZone = () => {
   const { naver } = window;
   const dispatch = useDispatch();
-  const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
   const [division, setDivision] = useState("");
-  const data = useSelector((state) => state);
-  const state = useSelector((state) => state.loca.location);
+  const [validation, setValidation] = useState({
+    isvalidate: true,
+    message: "",
+  });
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setValue(e.target.value);
-    setIndex(e.target.selectedIndex);
-  };
 
   const handleDataFetch = () => {
     if (value === "") {
-      alert("찾길 원하는 행정구역을 선택해주세요");
+      setValidation({
+        isvalidate: false,
+        message: "찾길 원하는 행정구역을 선택해주세요",
+      });
       return;
     }
 
     if (division.length === 0) {
-      alert("동/읍/면을 선택하세요");
+      setValidation({ isvalidate: false, message: "동/읍/면을 선택하세요" });
       return;
     }
 
@@ -47,37 +46,46 @@ const ChooseZone = () => {
   };
 
   return (
-    <Container>
-      <StyledSelect name="area" id="area-select" onChange={handleChange}>
-        <option value="">찾고 싶은 행정구역을 선택해주세요</option>
-        <option value="북구" id="BukGu">
-          북구
-        </option>
-        <option value="중구" id="JungGu">
-          중구
-        </option>
-        <option value="동구" id="DongGu">
-          동구
-        </option>
-        <option value="서구" id="SeoGu">
-          서구
-        </option>
-        <option value="수성구" id="SuSeongGu">
-          수성구
-        </option>
-        <option value="남구" id="NamGu">
-          남구
-        </option>
-        <option value="달서구" id="DalSeoGu">
-          달서구
-        </option>
-        <option value="달성군" id="DalSungGun">
-          달성군
-        </option>
-      </StyledSelect>
-      <SelectBox location={value} setDivision={setDivision} />
-      <StyledButton onClick={handleDataFetch}>찾아보기</StyledButton>
-    </Container>
+    <>
+      <Container>
+        <StyledSelect
+          name="area"
+          id="area-select"
+          onChange={(e) => setValue(e.target.value)}
+        >
+          <option value="">찾고 싶은 행정구역을 선택해주세요</option>
+          <option value="북구" id="BukGu">
+            북구
+          </option>
+          <option value="중구" id="JungGu">
+            중구
+          </option>
+          <option value="동구" id="DongGu">
+            동구
+          </option>
+          <option value="서구" id="SeoGu">
+            서구
+          </option>
+          <option value="수성구" id="SuSeongGu">
+            수성구
+          </option>
+          <option value="남구" id="NamGu">
+            남구
+          </option>
+          <option value="달서구" id="DalSeoGu">
+            달서구
+          </option>
+          <option value="달성군" id="DalSungGun">
+            달성군
+          </option>
+        </StyledSelect>
+        <SelectBox location={value} setDivision={setDivision} />
+        <StyledButton onClick={handleDataFetch}>찾아보기</StyledButton>
+      </Container>
+      {!validation.isvalidate && (
+        <StyledError>{validation.message}</StyledError>
+      )}
+    </>
   );
 };
 
@@ -112,6 +120,15 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
+`;
+
+const StyledError = styled.div`
+  width: 100%;
+  font-size: 1.5vh;
+  color: red;
+  text-align: center;
+  margin-top: 0.5rem;
+  font-weight: 700;
 `;
 
 export default ChooseZone;
