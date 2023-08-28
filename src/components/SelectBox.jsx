@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
 const SelectBox = ({ location, setDivision }) => {
-  const division = useSelector((state) => state.loca.division);
   const subOptions = {
     북구: [
       "동/읍/면",
@@ -182,14 +180,11 @@ const SelectBox = ({ location, setDivision }) => {
       "가창면",
     ],
   };
-  const handleChange = (e) => {
-    setDivision(e.target.value);
-  };
 
   if (!subOptions[location]) return <></>;
 
   return (
-    <StyledSelect onChange={handleChange}>
+    <StyledSelect onChange={(e) => setDivision(e.target.value)}>
       {subOptions[location].map((item) => {
         return (
           <option value={item} key={item}>

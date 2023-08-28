@@ -11,10 +11,12 @@ const asyncDaegu = createAsyncThunk("asyncDaegu", async (value) => {
   return data;
 });
 
-const DaeguSlice = createSlice({
-  name: "DaeguSlice",
+const fetchListSlice = createSlice({
+  name: "fetchListSlice",
   initialState: {
-    value: [],
+    value: sessionStorage.getItem("initList")
+      ? JSON.parse(sessionStorage.getItem("initList"))
+      : [],
     resetList: [],
     totalCount: 0,
     status: "Welcome",
@@ -31,7 +33,10 @@ const DaeguSlice = createSlice({
     builder.addCase(asyncDaegu.fulfilled, (state, action) => {
       state.status = "Succecs";
       state.value = action.payload.items.item;
-      state.resetList = action.payload.items.item;
+      sessionStorage.setItem(
+        "initList",
+        JSON.stringify(action.payload.items.item)
+      );
       state.totalCount = action.payload.totalCount;
     });
 
@@ -41,5 +46,5 @@ const DaeguSlice = createSlice({
   },
 });
 
-export default DaeguSlice;
+export default fetchListSlice;
 export { asyncDaegu };

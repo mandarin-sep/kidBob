@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import DaeguSlice from "./daeguSlice";
-import { MapSlice } from "./MapSlice";
+import fetchListSlice from "./fetchListSlice";
+import { ListInfoSlice } from "./ListInfoSlice";
 
 export const store = configureStore({
   reducer: {
-    daegu: DaeguSlice.reducer,
-    loca: MapSlice.reducer,
+    daegu: fetchListSlice.reducer,
+    loca: ListInfoSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),

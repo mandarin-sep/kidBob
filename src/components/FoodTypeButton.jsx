@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { MapSlice } from "../store/MapSlice";
+import { ListInfoSlice } from "../store/ListInfoSlice";
 import { ReactComponent as Cafe } from "../assets/cafe.svg";
 import { ReactComponent as Pizza } from "../assets/pizza.svg";
 import { ReactComponent as Hamburger } from "../assets/hamburger.svg";
@@ -18,7 +18,7 @@ const FoodTypeButton = () => {
   //버튼을 클릭하면 해당하는 버튼의 shopBsType에 해당하는 숫자가 store로 dispatch
   const handleClick = (e) => {
     const type = e.target.id;
-    dispatch(MapSlice.actions.setShopType(type));
+    dispatch(ListInfoSlice.actions.setShopType(type));
   };
   return (
     <FoodButtonContainer>
