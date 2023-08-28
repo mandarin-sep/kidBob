@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ChooseZone from "../components/ChooseZoneSelector";
 
-const IntroPage = () => {
+const LandingPage = () => {
   return (
     <PageContainer>
       <MainBadge src="/Symbol_of_Daegu.svg" />
@@ -55,4 +55,4 @@ const PageContainer = styled.div`
     bottom: 0;
   }
 `;
-export default IntroPage;
+export default LandingPage;
