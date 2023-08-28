@@ -14,7 +14,6 @@ const List = () => {
   const [filteredShopList, setFilteredShopList] = useState([]);
 
   useEffect(() => {
-    console.log(value, division);
     let filteredList = value.filter(
       (item) => item.shopAddr.split(" ")[0] === division
     );
@@ -31,10 +30,6 @@ const List = () => {
     if (type === "all") setShopList(filteredShopList);
   }, [type]);
 
-  if (value.length === 0) {
-    return <div></div>;
-  }
-
   if (status === "Loading") {
     return <Loading />;
   }
@@ -43,6 +38,13 @@ const List = () => {
     <>
       <ShopNameSearch value={value} />
       <StyledUl>
+        {shopList.length === 0 ? (
+          <StyledEmptyList>
+            조건에 맞는 가게가 <br /> 없습니다.
+          </StyledEmptyList>
+        ) : (
+          <></>
+        )}
         {JSON.stringify(shopList) !== "{}" ? (
           shopList.map((item) => {
             return <ListItem item={item} key={item.shopId} />;
@@ -75,6 +77,17 @@ const StyledUl = styled.ul`
   &::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);
   }
+`;
+
+const StyledEmptyList = styled.div`
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: 800;
+  font-size: 32px;
+  color: #217af4;
 `;
 
 export default List;
