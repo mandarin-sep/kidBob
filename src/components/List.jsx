@@ -14,6 +14,7 @@ const List = () => {
   const [filteredShopList, setFilteredShopList] = useState([]);
 
   useEffect(() => {
+    console.log(value, division);
     let filteredList = value.filter(
       (item) => item.shopAddr.split(" ")[0] === division
     );

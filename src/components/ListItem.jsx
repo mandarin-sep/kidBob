@@ -1,4 +1,4 @@
-import { MapSlice } from "../store/MapSlice";
+import { ListInfoSlice } from "../store/ListInfoSlice";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import shopType from "../shopType";
@@ -23,15 +23,15 @@ const ListItem = ({ item }) => {
 
   //가게 정보를 클릭했을때 해당 가게를 지도의 중심으로 이동
   const handleClick = () => {
-    dispatch(MapSlice.actions.setLocation(newCenter));
+    dispatch(ListInfoSlice.actions.setLocation(newCenter));
     dispatch(
-      MapSlice.actions.setInfo({
+      ListInfoSlice.actions.setInfo({
         shopBsType,
         shopName,
         shopRoadAddr,
       })
     );
-    dispatch(MapSlice.actions.setItemClick(true));
+    dispatch(ListInfoSlice.actions.setItemClick(true));
   };
 
   //평일 영업시간

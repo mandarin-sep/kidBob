@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { asyncDaegu } from "../store/daeguSlice";
-import { MapSlice } from "../store/MapSlice";
+import { asyncDaegu } from "../store/fetchListSlice";
+import { ListInfoSlice } from "../store/ListInfoSlice";
 import { useNavigate } from "react-router-dom";
 import SelectBox from "./SelectBox";
 import pickCenter from "../pickCenter.js";
@@ -40,9 +40,9 @@ const ChooseZone = () => {
       centerValue[1]
     );
     dispatch(asyncDaegu(value));
-    dispatch(MapSlice.actions.setLocation(centerPosition));
-    dispatch(MapSlice.actions.setShopType(""));
-    dispatch(MapSlice.actions.setDivision(division));
+    dispatch(ListInfoSlice.actions.setLocation(centerPosition));
+    dispatch(ListInfoSlice.actions.setShopType(""));
+    dispatch(ListInfoSlice.actions.setDivision(division));
     navigate("/main");
   };
 
