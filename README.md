@@ -18,9 +18,13 @@ https://www.data.go.kr/data/15109168/openapi.do#/
 
 ## 사용기술
 
-<img src="https://img.shields.io/badge/reduxToolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white">
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+| 역할 | 종류 | 사용이유 |
+| --- | --- | -- | 
+| 언어 | ![JavaScript](https://img.shields.io/badge/javascript-f7df1e?style=for-the-badge&logo=javascript&logoColor=black) | TypeScript 학습 초기라 redux-toolkit을 학습하면서 사용하기 부담스러움 |
+| 프레임워크 | ![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black) | 다른 프레임 워크 사용법 모름 |
+| 스타일 | ![Styled Components](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white) | 컴포넌트와 스타일 코드가 같은 위치에 있어 유지보수에 용이함 |
+| 상태관리 | ![ReduxToolkit](https://img.shields.io/badge/reduxToolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white) | redux-devtools 를 통해 상태 변화를 눈으로 볼 수 있음 |
+
 
 ## 사용 api
 
