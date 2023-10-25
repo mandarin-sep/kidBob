@@ -24,6 +24,7 @@ https://www.data.go.kr/data/15109168/openapi.do#/
 | 프레임워크 | ![React](https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black) | 다른 프레임 워크 사용법 모름 |
 | 스타일 | ![Styled Components](https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white) | 컴포넌트와 스타일 코드가 같은 위치에 있어 유지보수에 용이함 |
 | 상태관리 | ![ReduxToolkit](https://img.shields.io/badge/reduxToolkit-764ABC?style=for-the-badge&logo=Redux&logoColor=white) | redux-devtools 를 통해 상태 변화의 흐름을 눈으로 볼 수 있음 |
+| 배포 | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white) | 가장 간단하게 CI/CD를 할 수 있게 해줌 |
 
 
 ## 사용 api
